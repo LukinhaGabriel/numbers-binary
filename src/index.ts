@@ -1,4 +1,4 @@
-function inverterArray(arr:Array<number>):Array<Number>{
+function inverterArray(arr:Array<number>):Array<number>{
     const reverseArray:Array<number> = [];
     for(let index = (arr.length - 1); index >= 0; index--){
         reverseArray.push(arr[index]);
@@ -9,6 +9,7 @@ function inverterArray(arr:Array<number>):Array<Number>{
 
 function decimalToBinary(decimal:number = 0):number {
     const Arraybinary:Array<number> = [];
+    if(decimal === 0) { return 0 };
     while(decimal !== 1){
         let resto = decimal % 2;
         decimal = Math.trunc(decimal / 2);
