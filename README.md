@@ -4,8 +4,10 @@
 Projeto de estudos com o objetivo de praticar lógica de programação e conversão entre bases numéricas.
 
 ## ⚙️ Funcionalidades
-- ✅ Converter número **binário para decimal**
-- ✅ Converter número **decimal para binário**
+- ✅ Converter **binário para decimal**
+- ✅ Converter **decimal para binário**
+- ✅ Converter **decimal para ASCII**
+- ✅ Converter **ASCII para decimal**
 
 ## 🛠️ Tecnologias Utilizadas
 - ✅ JavaScript / TypeScript

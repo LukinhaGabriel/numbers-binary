@@ -7,22 +7,22 @@ function inverterArray(arr:Array<number>):Array<number>{
 }
 
 
-function decimalToBinary(decimal:number = 0):number {
+function decimalToBinary(decimal:number = 0):string{
     const Arraybinary:Array<number> = [];
-    if(decimal === 0) { return 0 };
+    if(decimal === 0) { return "0" };
     while(decimal !== 1){
         let resto = decimal % 2;
         decimal = Math.trunc(decimal / 2);
         Arraybinary.push(resto);
     }
     Arraybinary.push(decimal);
-    const binary = parseInt(inverterArray(Arraybinary).join(""));
-    return binary;
+    const binary = String(parseInt(inverterArray(Arraybinary).join("")));
+    //return binary;
+    return binary.padStart(8, "0");
 }
 
-function binaryToDecimal(binary:number = 0):number{
-    const binaryString= String(binary);
-    const binaryReverse = binaryString.split("").reverse().join("");
+function binaryToDecimal(binary:string):number{
+    const binaryReverse = binary.split("").reverse().join("");
     let sum = 0;
     for(let index = 0; index < binaryReverse.length; index++){
         let decimal = (2**index) * Number(binaryReverse[index]);
@@ -31,14 +31,31 @@ function binaryToDecimal(binary:number = 0):number{
    return sum;
 }   
 
-function binaryToDecimalShort(binary:number):number{
+function binaryToDecimalNative(binary:string):number{
     const binaryString= String(binary);
     return parseInt(binaryString, 2);
 }
 
-const binary = decimalToBinary(18);
-const decimal = binaryToDecimal(binary);
-const decimalShort = binaryToDecimalShort(binary);
+function decimalToStr(decimal:number):string{
+    return String.fromCharCode(decimal);
+}
 
-console.log(`O número binário de ${decimal} é ${binary}`);
-console.log(`O número binário de ${decimalShort} é ${binary}`);
+function describChar(decimal:number):string{
+    if(decimal === 32) return "SPACE";
+    if(decimal === 127) return "DELETE";
+    return decimal < 32 ? `CTRL ${decimal}` : decimalToStr(decimal);
+}
+
+function strToBinary(str:string):string{
+    const decimal = str.charCodeAt(0);
+    const binary  = decimal === 0 ? "00000000" : decimalToBinary(decimal);
+    return binary;
+}
+
+const binary = decimalToBinary(65);
+const decimal = binaryToDecimal(binary);
+const str = decimalToStr(decimal);
+//const decimalNative = binaryToDecimalNative(binary);
+
+console.log(`O número binário de ${decimal} é ${binary} e sua representação na tabela ASCII é ${describChar(decimal)}`);
+console.log("ASCII em Binário: ", strToBinary(str));
